@@ -2,19 +2,21 @@ import emailjs from '@emailjs/browser';
 import { FormEvent, useRef } from 'react';
 
 export default function Contact() {
-    const form = useRef<string>("");
+    const form = useRef<HTMLFormElement>(null);
 
     const sendEmail = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const target = e.target as HTMLFormElement;
 
-        emailjs.sendForm('service_nphb38g', 'template_db6qjqf', form.current, 'HZwjN2Osot38_mJR0')
-            .then((result) => {
-                console.log(result.text);
-                target.reset();
-            }, (error) => {
-                console.log(error.text);
-            });
+        if (form.current) {
+            emailjs.sendForm('service_nphb38g', 'template_db6qjqf', form.current, 'HZwjN2Osot38_mJR0')
+                .then((result) => {
+                    console.log(result.text);
+                    target.reset();
+                }, (error) => {
+                    console.log(error.text);
+                });
+        }
     };
 
     return (
