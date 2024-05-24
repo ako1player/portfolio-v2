@@ -1,6 +1,12 @@
 import { motion } from "framer-motion";
+import React from "react";
 
-const Menu = ({ isOpen, onMenuItemClick }) => {
+interface MenuProps {
+    isOpen: boolean,
+    onMenuItemClick: (menuItem: number) => void;
+}
+
+const Menu: React.FC<MenuProps> = ({ isOpen, onMenuItemClick }) => {
     const menuItems = [
         { text: "Home" },
         { text: "Projects" },
